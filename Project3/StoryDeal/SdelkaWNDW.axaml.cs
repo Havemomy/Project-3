@@ -1,19 +1,22 @@
 using System.Collections.Generic;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using MySql.Data.MySqlClient;
+using Project3.StoryDeal;
 
 
 namespace Project3;
 
-public partial class MainWindow : Window
+public partial class SdelkaWNDW : Window
 {
     public string _connString = "server = sql8.freesqldatabase.com;database = sql8665106; port = 3306; User = sql8665106; password = iQZp6r1cIn";
     private List<StoryDeal.StoryDeal> _storyDeals;
     private MySqlConnection _connection;
-    public MainWindow()
+    public SdelkaWNDW()
     {
         InitializeComponent();
         ShowTable();
+        
     }
 
     private void ShowTable()
@@ -40,5 +43,17 @@ public partial class MainWindow : Window
         }
         _connection.Close();
         StoryDealGrid.ItemsSource = _storyDeals;
+    }
+
+    private void BackBTN_OnClick(object? sender, RoutedEventArgs e)
+    {
+        this.Close();
+    }
+
+    private void AddDeal_OnClick(object? sender, RoutedEventArgs e)
+    {
+        AddDealWndw addDealWndw = new AddDealWndw();
+        this.Close();
+        addDealWndw.Show();
     }
 }

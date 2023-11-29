@@ -7,5 +7,14 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
+        <Style Selector="DataGridColumnHeader">
+            <Style Selector="^ /template/ Grid#PART_ColumnHeaderRoot">
+                <Setter Property="Background" Value="Beige"/>
+            </Style>
+            
+            <Style Selector="^ /template/ Border#HeaderBorder">
+                <Setter Property="Background" Value="Beige"/>
+            </Style>
+        </Style>
     </Application.Styles>
 </Application>

@@ -19,4 +19,32 @@
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2"/>
         <PackageReference Include="MySql.Data" Version="8.2.0" />
     </ItemGroup>
+
+
+    <ItemGroup>
+      <None Remove="Icons\Sobstvennik.png" />
+      <AvaloniaResource Include="Icons\Sobstvennik.png" />
+      <None Remove="Icons\free-icon-buyer-3796274.png" />
+      <AvaloniaResource Include="Icons\Pokupatel.png" />
+      <None Remove="Icons\DovLico.png" />
+      <AvaloniaResource Include="Icons\DovLico.png" />
+      <None Remove="Icons\Sdelki.png" />
+      <AvaloniaResource Include="Icons\Sdelki.png" />
+      <None Remove="Icons\Edit.png" />
+      <AvaloniaResource Include="Icons\Edit.png" />
+      <None Remove="Icons\Minus.png" />
+      <AvaloniaResource Include="Icons\Minus.png" />
+      <None Remove="Icons\Plus.png" />
+      <AvaloniaResource Include="Icons\Plus.png" />
+      <None Remove="Icons\Back.png" />
+      <AvaloniaResource Include="Icons\Back.png" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Compile Update="StoryDeal\SdelkaWNDW.axaml.cs">
+        <DependentUpon>SdelkaWNDW.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

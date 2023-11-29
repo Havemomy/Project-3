@@ -1,0 +1,40 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Project3.SdelkaWNDW"
+        Title="Project3" Background="BurlyWood"
+        CanResize="False"
+        Width="881"
+        Height="500
+        ">
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" DockPanel.Dock="Bottom" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Name="AddDeal" Width="50" Height="50" Margin="10" Click="AddDeal_OnClick">
+                <Image Source="avares://Project3/Icons/Plus.png"></Image>
+            </Button>
+            <Button Name="DelDeal" Width="50" Height="50" Margin="10">
+                <Image Source="avares://Project3/Icons/Minus.png"></Image>
+            </Button>
+            <Button Name="EditDeal" Width="50" Height="50" Margin="10">
+                <Image Source="avares://Project3/Icons/Edit.png"></Image>
+            </Button>
+            <Button Name="BackBTN" Width="50" Height="50" Margin="10" Click="BackBTN_OnClick">
+                <Image Source="avares://Project3/Icons/Back.png"></Image>
+            </Button>
+        </StackPanel>
+        <DataGrid Name="StoryDealGrid" x:CompileBindings="False" Margin="10" Background="Bisque">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding DealID}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Объект" Binding="{Binding Object}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Собственник" Binding="{Binding Sobstvennik}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Покупатель" Binding="{Binding Pokupatel}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Доверенное лицо" Binding="{Binding DoverennoeLico}"></DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+      
+    </DockPanel>
+</Window>
