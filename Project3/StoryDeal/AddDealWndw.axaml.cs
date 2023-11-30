@@ -3,6 +3,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Google.Protobuf.Collections;
 using MySql.Data.MySqlClient;
 
 namespace Project3.StoryDeal;
@@ -14,11 +15,28 @@ public partial class AddDealWndw : Window
     public AddDealWndw()
     {
         InitializeComponent();
+        InitComboBoxSobstv();
+        InitComboBoxObject();
+        InitComboBoxPokyp();
+        InitComboBoxDovLic();
     }
 
     private void AddBtn_OnClick(object? sender, RoutedEventArgs e)
     {
-        
+        _connection = new MySqlConnection(_connString);
+        _connection.Open();
+        string sql = "insert into StoryDeal (Object, Sobstvennik, Pokupatel, DoverennoeLico)" +
+                     "values (@obj, @sobst, @pokup, @dovLic)";
+        using (MySqlCommand command = new MySqlCommand(sql, _connection))
+        {
+            command.Parameters.AddWithValue("@obj", ObjCMB.SelectedValue);
+            command.Parameters.AddWithValue("@sobst", SobCMB.SelectedValue);
+            command.Parameters.AddWithValue("@pokup", PokCMB.SelectedValue);
+            command.Parameters.AddWithValue("@dovLic", DowCMB.SelectedValue);
+            command.ExecuteNonQuery();
+        }
+        _connection.Close();
+        this.Close();
     }
 
     private void BackBtn_OnClick(object? sender, RoutedEventArgs e)
@@ -26,11 +44,11 @@ public partial class AddDealWndw : Window
         this.Close();
     }
 
-    public InitComboBoxObject()
+    public void InitComboBoxObject()
     {
-        string sql = "select ObjectId, N.Nazvanie " +
-                     "from sql8665106.Objeсt" +
-                     " join Nazvanie N on Objeсt.Nazvanie = N.NazvanieID";
+        string sql = """
+                     select ObjectId, N.Nazvanie from sql8665106.Object join sql8665106.Nazvanie N on Object.Nazvanie = N.NazvanieID
+                     """;
         var objects = new List<Object.Object>();
         _connection = new MySqlConnection(_connString);
         _connection.Open();
@@ -47,5 +65,69 @@ public partial class AddDealWndw : Window
         }
         _connection.Close();
         ObjCMB.ItemsSource = objects;
+    }
+
+    private void InitComboBoxSobstv()
+    {
+        string sql = " select SobsvennikID, FIO " +
+                     "from Sobstvennik";
+        var sobstvs = new List<Sobstvennik.Sobstvennik>();
+        _connection = new MySqlConnection(_connString);
+        _connection.Open();
+        MySqlCommand command = new MySqlCommand(sql, _connection);
+        MySqlDataReader reader = command.ExecuteReader();
+        while (reader.Read() && reader.HasRows)
+        {
+            var current = new Sobstvennik.Sobstvennik()
+            {
+                SobsvennikID = reader.GetInt32(column:"SobsvennikID"),
+                FIO = reader.GetString(column:"FIO"),
+            };
+            sobstvs.Add(current);
+        }
+        _connection.Close();
+        SobCMB.ItemsSource = sobstvs;
+    }
+    private void InitComboBoxPokyp()
+    {
+        string sql = " select PokupatelID, PokFIO " +
+                     "from Pokupatel";
+        var poks = new List<Pokupatel.Pokupatel>();
+        _connection = new MySqlConnection(_connString);
+        _connection.Open();
+        MySqlCommand command = new MySqlCommand(sql, _connection);
+        MySqlDataReader reader = command.ExecuteReader();
+        while (reader.Read() && reader.HasRows)
+        {
+            var current = new Pokupatel.Pokupatel()
+            {
+                PokupatelID = reader.GetInt32(column:"PokupatelID"),
+                PokFIO = reader.GetString(column:"PokFIO"),
+            };
+            poks.Add(current);
+        }
+        _connection.Close();
+        PokCMB.ItemsSource = poks;
+    }
+    private void InitComboBoxDovLic()
+    {
+        string sql = " select LicoID, DovFIO " +
+                     "from DoverennoeLico";
+        var lics = new List<DoverennoeLico.DoverennoeLico>();
+        _connection = new MySqlConnection(_connString);
+        _connection.Open();
+        MySqlCommand command = new MySqlCommand(sql, _connection);
+        MySqlDataReader reader = command.ExecuteReader();
+        while (reader.Read() && reader.HasRows)
+        {
+            var current = new DoverennoeLico.DoverennoeLico()
+            {
+                LicoID = reader.GetInt32(column:"LicoID"),
+                DovFio = reader.GetString(column:"DovFIO"),
+            };
+            lics.Add(current);
+        }
+        _connection.Close();
+        DowCMB.ItemsSource = lics;
     }
 }

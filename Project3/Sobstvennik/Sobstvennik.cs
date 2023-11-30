@@ -2,7 +2,7 @@ namespace Project3.Sobstvennik;
 
 public class Sobstvennik
 {
-    public int SobstvennikID { get; set; }
+    public int SobsvennikID { get; set; }
     public string FIO { get; set; }
     public string Phone { get; set; }
     public int PassportSeries { get; set; }
