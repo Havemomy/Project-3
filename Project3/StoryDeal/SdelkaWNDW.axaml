@@ -7,8 +7,7 @@
         Title="Project3" Background="BurlyWood"
         CanResize="False"
         Width="881"
-        Height="500
-        ">
+        Height="500">
     <DockPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
         </StackPanel>

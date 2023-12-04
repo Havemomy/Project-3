@@ -10,7 +10,7 @@ namespace Project3;
 
 public partial class SdelkaWNDW : Window {
     public string _connString =
-        "server = sql8.freesqldatabase.com;database = sql8665106; port = 3306; User = sql8665106; password = iQZp6r1cIn";
+        "server = localhost;database = мразь; port = 3306; User = root; password = Bebra2281337";
 
     private List<StoryDeal.StoryDeal> _storyDeals;
     private MySqlConnection _connection;
@@ -22,10 +22,10 @@ public partial class SdelkaWNDW : Window {
 
     private void ShowTable() {
         string sql = "select DealID, Nazvanie, FIO, PokFIO, DovFIO from StoryDeal " +
-                     " join sql8665106.Nazvanie n on StoryDeal.Object = n.NazvanieID" +
-                     " join sql8665106.Sobstvennik s on StoryDeal.Sobstvennik = s.SobsvennikID" +
-                     " join sql8665106.Pokupatel p on StoryDeal.Pokupatel = p.PokupatelID" +
-                     " join sql8665106.DoverennoeLico d on StoryDeal.DoverennoeLico = d.LicoID";
+                     " join мразь.Nazvanie n on StoryDeal.Object = n.NazvanieID" +
+                     " join мразь.Sobstvennik s on StoryDeal.Sobstvennik = s.SobsvennikID" +
+                     " join мразь.Pokupatel p on StoryDeal.Pokupatel = p.PokupatelID" +
+                     " join мразь.DoverennoeLico d on StoryDeal.DoverennoeLico = d.LicoID";
         _storyDeals = new List<StoryDeal.StoryDeal>();
         _connection = new MySqlConnection(_connString);
         _connection.Open();

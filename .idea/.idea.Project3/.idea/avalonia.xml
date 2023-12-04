@@ -7,6 +7,8 @@
         <entry key="Project3/GigaMainWindow.axaml" value="Project3/Project3.csproj" />
         <entry key="Project3/MainWindow.axaml" value="Project3/Project3.csproj" />
         <entry key="Project3/SdelkaWNDW.axaml" value="Project3/Project3.csproj" />
+        <entry key="Project3/Sobstvennik/AddSobstvWndw.axaml" value="Project3/Project3.csproj" />
+        <entry key="Project3/Sobstvennik/SobstvWndw.axaml" value="Project3/Project3.csproj" />
         <entry key="Project3/StoryDeal/AddDealWndw.axaml" value="Project3/Project3.csproj" />
         <entry key="Project3/StoryDeal/SdelkaWNDW.axaml" value="Project3/Project3.csproj" />
       </map>

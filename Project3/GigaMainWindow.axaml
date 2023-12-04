@@ -7,7 +7,7 @@
         Title="GigaMainWindow" Background="BurlyWood">
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
-                <Button Name="SobstvennikiBTN" Width="100" Height="100" Margin="10" Background="Bisque">
+                <Button Name="SobstvennikiBTN" Width="100" Height="100" Margin="10" Background="Bisque" Click="SobstvennikiBTN_OnClick">
                         <Image Source="Icons/Sobstvennik.png"></Image>
                 </Button>
                 <Button Name="PokupateliBTN" Width="100" Height="100" Margin="10" Background="Bisque">

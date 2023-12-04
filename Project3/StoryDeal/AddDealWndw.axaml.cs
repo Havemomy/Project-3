@@ -60,12 +60,11 @@ public partial class AddDealWndw : Window {
     private void OnAdd() {
         AddEvent?.Invoke();
     }
-
     public StoryDeal? Result { get; private set; }
 
-    private void BackBtn_OnClick(object? sender, RoutedEventArgs e) {
+    private void BackBtn_OnClick(object? sender, RoutedEventArgs e) 
+    {
         this.Close();
-        
     }
 
     public void InitComboBoxObject() {
@@ -89,7 +88,8 @@ public partial class AddDealWndw : Window {
         ObjCMB.ItemsSource = objects;
     }
 
-    private void InitComboBoxSobstv() {
+    private void InitComboBoxSobstv()
+    {
         string sql = " select SobsvennikID, FIO " +
                      "from Sobstvennik";
         var sobstvs = new List<Sobstvennik.Sobstvennik>();
@@ -97,16 +97,16 @@ public partial class AddDealWndw : Window {
         _connection.Open();
         MySqlCommand command = new MySqlCommand(sql, _connection);
         MySqlDataReader reader = command.ExecuteReader();
-        while (reader.Read() && reader.HasRows) {
-            var current = new Sobstvennik.Sobstvennik() {
-                SobsvennikID = reader.GetInt32(column: "SobsvennikID"),
-                FIO = reader.GetString(column: "FIO"),
-            };
-            sobstvs.Add(current);
-        }
-
-        _connection.Close();
-        SobCMB.ItemsSource = sobstvs;
+        while (reader.Read() && reader.HasRows)
+        {
+            sobstvs.Add(new Sobstvennik.Sobstvennik(
+                reader.GetInt32(column: "SobsvennikID"),
+                reader.GetString(column: "FIO"),
+                reader.GetString("Phone")
+        ));
+    }
+    _connection.Close();
+    SobCMB.ItemsSource = sobstvs;
     }
 
     private void InitComboBoxPokyp() {
